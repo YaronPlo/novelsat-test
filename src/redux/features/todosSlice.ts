@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
@@ -13,15 +13,22 @@ export const todosSlice = createSlice({
 	name: "todos",
 	initialState,
 	reducers: {
-		addTodo: (state, action: PayloadAction<Todo>) => {
-			state.todos.push(action.payload);
+		addTodo: {
+			reducer: (state, action: PayloadAction<Todo>) => {
+				state.todos = [...state.todos, action.payload];
+			},
+			prepare: (placeholder: string) => {
+				const id = nanoid();
+				const isDone = false;
+				return { payload: { id, placeholder, isDone } };
+			},
 		},
-		removeTodo: (state, action: PayloadAction<number>) => {
-			state.todos.filter((todo) => todo.id !== action.payload);
+		removeTodo: (state, action: PayloadAction<string>) => {
+			state.todos = state.todos.filter((todo) => todo?.id !== action.payload);
 		},
 		editTodo: (
 			state,
-			action: PayloadAction<{ id: number; placeholder: string }>
+			action: PayloadAction<{ id: string; placeholder: string }>
 		) => {
 			state.todos.map((todo) => {
 				if (todo.id === action.payload.id) {
@@ -30,11 +37,14 @@ export const todosSlice = createSlice({
 				return todo;
 			});
 		},
+		clearTodoList: (state) => {
+			state.todos = [];
+		},
 	},
 });
+export const selectAllTodos = (state: RootState) => state.todos.todos;
 
-export const { addTodo, removeTodo, editTodo } = todosSlice.actions;
-
-export const selectAllTodos = (state: RootState) => state.todos;
+export const { addTodo, removeTodo, editTodo, clearTodoList } =
+	todosSlice.actions;
 
 export default todosSlice.reducer;

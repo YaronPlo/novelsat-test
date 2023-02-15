@@ -1,17 +1,18 @@
 import GlobalStyles from "./assets/GlobalStyles";
-import Wrapper from "./assets/wrappers/App";
-import TodoListTitle from "./components/TodoListTitle";
-function App() {
+import { AppWrapper } from "./assets/wrappers";
+import { AddTodo, TodoList, TodoListTitle } from "./components";
+
+const App = () => {
 	return (
 		<>
 			<GlobalStyles />
-			<Wrapper>
+			<AppWrapper>
 				<TodoListTitle />
-				<div className="todos-display">display todos list</div>
-				<div className="todos-add">todo list form</div>
-			</Wrapper>
+				<TodoList />
+				<AddTodo />
+			</AppWrapper>
 		</>
 	);
-}
+};
 
 export default App;

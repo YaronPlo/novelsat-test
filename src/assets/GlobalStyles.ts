@@ -11,6 +11,17 @@ export default createGlobalStyle`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-#root {
+:root {
     margin:0 auto;
-    }`;
+    background-color: rgba(132, 207, 217, 0.29);
+    }
+    
+    button {
+      cursor: pointer;
+      &:disabled{
+        cursor: not-allowed
+      }
+}
+
+    
+    `;

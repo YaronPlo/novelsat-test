@@ -1,7 +1,7 @@
 import styled from "styled-components";
 interface IProps {
 	isDone: boolean;
-	isEdit: boolean;
+	canEdit: boolean;
 }
 
 const Wrapper = styled.div<IProps>`
@@ -15,16 +15,25 @@ const Wrapper = styled.div<IProps>`
 	}
 	label {
 		text-decoration-line: ${(props) => (props.isDone ? "line-through" : "")};
+		display: ${(props) => (props.canEdit ? "none" : "inline-block")};
 	}
 
 	.icons {
 		float: right;
+
 		border: transparent;
 		background: transparent;
+		& > svg {
+			margin: 0 0.2px;
+		}
 	}
 	hr {
 		border: 0.5px solid grey;
 		border-radius: 10px;
+	}
+
+	input[type="text"] {
+		display: ${(props) => (props.canEdit ? "inline-block" : "none")};
 	}
 `;
 

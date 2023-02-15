@@ -26,7 +26,7 @@ const Todo = ({ todo }: IProps) => {
 	};
 
 	return (
-		<TodoWrapper isDone={checked} isEdit={canEdit}>
+		<TodoWrapper isDone={checked} canEdit={canEdit}>
 			<input
 				type="checkbox"
 				id={todo.id}
@@ -34,21 +34,20 @@ const Todo = ({ todo }: IProps) => {
 				onChange={() => setChecked(!checked)}
 				disabled={canEdit}
 			/>
-			{!canEdit && <label htmlFor={todo.id}>{todo.placeholder}</label>}
-			{canEdit && (
-				<input
-					type="text"
-					value={edit}
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-						setEdit(e.target.value)
-					}
-					ref={editRef}
-				/>
-			)}
+			<label htmlFor={todo.id}>{todo.placeholder}</label>
+			<input
+				type="text"
+				value={edit}
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+					setEdit(e.target.value)
+				}
+				ref={editRef}
+			/>
+
 			<div className="icons">
 				{canEdit && <GrFormCheckmark onClick={handleDoneEdit} />}
 				<GrFormEdit onClick={() => setCanEdit(!canEdit)} />
-				<GrFormClose className="icon-close" onClick={handleClick} />
+				<GrFormClose onClick={handleClick} />
 			</div>
 			<hr />
 		</TodoWrapper>

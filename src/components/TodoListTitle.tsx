@@ -1,6 +1,6 @@
-import Wrapper from "../assets/wrappers/Title";
+import { TitleWrapper } from "../assets/wrappers";
 
 const TodoListTitle = () => {
-	return <Wrapper>Todo List:</Wrapper>;
+	return <TitleWrapper>Todo List:</TitleWrapper>;
 };
 export default TodoListTitle;

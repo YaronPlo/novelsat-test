@@ -1,5 +1,4 @@
-export { default as Form } from "./Form";
-export { default as Title } from "./Title";
-export { default as AddTodoInput } from "./AddTodoInput";
+export { default as FormWrapper } from "./FormWrapper";
+export { default as TitleWrapper } from "./TitleWrapper";
 export { default as AppWrapper } from "./AppWrapper";
 export { default as TodoWrapper } from "./TodoWrapper";

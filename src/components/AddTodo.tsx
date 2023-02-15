@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash";
-import { useState, useRef } from "react";
-import { Form, AddTodoInput } from "../assets/wrappers";
+import { useState } from "react";
+import { FormWrapper } from "../assets/wrappers";
 import {
 	addTodo,
 	clearTodoList,
@@ -11,39 +11,45 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 const AddTodo = () => {
 	const dispatch = useAppDispatch();
 	const todos = useAppSelector(selectAllTodos);
-	const todoRef = useRef<HTMLInputElement>(null);
 
 	const [value, setValue] = useState("");
+
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (todoRef.current && todoRef.current.value) {
-			dispatch(addTodo(todoRef.current.value));
-			todoRef.current.value = "";
+		if (value) {
+			dispatch(addTodo(value));
+			setValue("");
 		}
 	};
 
 	return (
-		<Form onSubmit={onSubmit}>
-			<AddTodoInput
-				type="text"
-				value={value}
-				placeholder="Add New Task..."
-				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-					setValue(e.target.value)
-				}
-				ref={todoRef}
-			/>
+		<FormWrapper onSubmit={onSubmit}>
+			<div className="input">
+				<span>TODO:</span>
+				<input
+					className="input-field"
+					type="text"
+					placeholder="Add Todo..."
+					value={value}
+					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+						setValue(e.target.value)
+					}
+				/>
+			</div>
 			<div className="btn">
-				<button type="submit">Add</button>
+				<button className="btn-submit" type="submit">
+					Add Todo
+				</button>
 				<button
+					className="btn-reset"
 					type="button"
 					onClick={() => dispatch(clearTodoList())}
 					disabled={isEmpty(todos)}
 				>
-					Reset
+					Clear List
 				</button>
 			</div>
-		</Form>
+		</FormWrapper>
 	);
 };
 export default AddTodo;

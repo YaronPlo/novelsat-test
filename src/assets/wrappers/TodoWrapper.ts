@@ -1,7 +1,7 @@
 import styled from "styled-components";
 interface IProps {
 	isDone: boolean;
-	canEdit: boolean;
+	onEdit: boolean;
 }
 
 const Wrapper = styled.div<IProps>`
@@ -15,7 +15,7 @@ const Wrapper = styled.div<IProps>`
 	}
 	label {
 		text-decoration-line: ${(props) => (props.isDone ? "line-through" : "")};
-		display: ${(props) => (props.canEdit ? "none" : "inline-block")};
+		display: ${(props) => (props.onEdit ? "none" : "inline-block")};
 	}
 
 	.icons {
@@ -33,7 +33,7 @@ const Wrapper = styled.div<IProps>`
 	}
 
 	input[type="text"] {
-		display: ${(props) => (props.canEdit ? "inline-block" : "none")};
+		display: ${(props) => (props.onEdit ? "inline-block" : "none")};
 	}
 `;
 

@@ -1,16 +1,11 @@
-import { isEmpty } from "lodash";
 import { useState } from "react";
 import { FormWrapper } from "../assets/wrappers";
-import {
-	addTodo,
-	clearTodoList,
-	selectAllTodos,
-} from "../redux/features/todosSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
+import { addTodo } from "../redux/features/todosSlice";
+import { useAppDispatch } from "../redux/hooks/hooks";
+import { ClearList } from ".";
 
-const AddTodo = () => {
+const TodoForm = () => {
 	const dispatch = useAppDispatch();
-	const todos = useAppSelector(selectAllTodos);
 	const [value, setValue] = useState("");
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,16 +34,9 @@ const AddTodo = () => {
 				<button className="btn-submit" type="submit">
 					Add Todo
 				</button>
-				<button
-					className="btn-reset"
-					type="button"
-					onClick={() => dispatch(clearTodoList())}
-					disabled={isEmpty(todos)}
-				>
-					Clear List
-				</button>
+				<ClearList />
 			</div>
 		</FormWrapper>
 	);
 };
-export default AddTodo;
+export default TodoForm;

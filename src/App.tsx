@@ -1,6 +1,6 @@
 import GlobalStyles from "./assets/GlobalStyles";
 import { AppWrapper } from "./assets/wrappers";
-import { AddTodo, TodoList, TodoListTitle } from "./components";
+import { TodoForm, TodoList, TodoListTitle } from "./components";
 
 const App = () => {
 	return (
@@ -9,7 +9,7 @@ const App = () => {
 			<AppWrapper>
 				<TodoListTitle />
 				<TodoList />
-				<AddTodo />
+				<TodoForm />
 			</AppWrapper>
 		</>
 	);

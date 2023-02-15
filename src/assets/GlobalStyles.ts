@@ -11,6 +11,7 @@ export default createGlobalStyle`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 :root {
 
     --input-color: #99A3BA;
@@ -29,9 +30,9 @@ export default createGlobalStyle`
 
     margin:0 auto;
     background-color: rgba(132, 207, 217, 0.29);
-    }
+}
     
-    button {
+button {
 		padding: 0.4em 1.2em;
 		border: none;
 		cursor: pointer;
@@ -80,5 +81,5 @@ export default createGlobalStyle`
     opacity: 0.5;
     cursor: not-allowed;
     }
-	}
+}
     `;

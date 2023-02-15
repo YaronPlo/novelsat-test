@@ -11,7 +11,6 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 const AddTodo = () => {
 	const dispatch = useAppDispatch();
 	const todos = useAppSelector(selectAllTodos);
-
 	const [value, setValue] = useState("");
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

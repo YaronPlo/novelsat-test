@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { GrFormClose, GrFormEdit, GrFormCheckmark } from "react-icons/gr";
 import { TodoWrapper } from "../../assets/wrappers";
 import { editTodo, removeTodo } from "../../redux/features/todosSlice";
@@ -6,11 +6,11 @@ import { useAppDispatch } from "../../redux/hooks/hooks";
 interface IProps {
 	todo: Todo;
 }
+
 const Todo = ({ todo }: IProps) => {
 	const [checked, setChecked] = useState(false);
 	const [canEdit, setCanEdit] = useState(false);
-	const [edit, setEdit] = useState("");
-	const editRef = useRef<HTMLInputElement>(null);
+	const [edit, setEdit] = useState(todo?.placeholder || "");
 	const dispatch = useAppDispatch();
 
 	const handleClick = () => {
@@ -18,8 +18,8 @@ const Todo = ({ todo }: IProps) => {
 	};
 
 	const handleDoneEdit = () => {
-		if (editRef?.current?.value) {
-			dispatch(editTodo({ id: todo.id, placeholder: editRef.current.value }));
+		if (edit) {
+			dispatch(editTodo({ id: todo.id, placeholder: edit }));
 			setCanEdit(false);
 			setChecked(false);
 		}
@@ -41,7 +41,6 @@ const Todo = ({ todo }: IProps) => {
 				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 					setEdit(e.target.value)
 				}
-				ref={editRef}
 			/>
 
 			<div className="icons">
